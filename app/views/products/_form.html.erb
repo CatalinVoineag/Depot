@@ -1,0 +1,24 @@
+<%= simple_form_for @product do |f| %>
+	<div class="col-md-6 col-offset-3">
+		
+		<div class="from-group">
+			<%= f.label :name %>
+			<%= f.input_field :name, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :description %>
+			<%= f.text_field :description, label: false, class:'form-control', size: '40x30' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :price %>	
+			<%= f.input :price, label: false, class:'form-control' %>
+		</div>
+
+		<br>
+		<%= f.submit params[:action] == "new" ? "Create Product" : "Update product" , class:'btn btn-primary' %>
+
+	</div>
+<% end %>
+

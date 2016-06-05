@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  price: 9.99
+  available_on: MyString
+  deleted_at: MyString
+
+two:
+  name: MyString
+  description: MyString
+  price: 9.99
+  available_on: MyString
+  deleted_at: MyString
