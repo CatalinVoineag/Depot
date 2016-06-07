@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   	#respond_to do |format|
   		if user && user.authenticate(params[:session][:password])
   			log_in user
+        set_cart
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
   			redirect_back_or products_path
 	  	else

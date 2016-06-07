@@ -60,4 +60,17 @@ module SessionsHelper
 		session[:forwarding_url] = request.url if request.get?
 	end
 
+	# Gets or Sets the Cart
+	def set_cart
+		cart = Cart.where(user_id: current_user.id)
+		if cart.blank?
+			cart = Cart.create(user_id: current_user.id)
+		end
+	end
+
+	# Current Cart
+	def current_cart
+		@cart = Cart.find_by(user_id: current_user.id)
+	end
+
 end

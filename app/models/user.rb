@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
 	has_secure_password
 
+	has_one :cart
+
 	attr_accessor :remember_token
 
 	def remember
