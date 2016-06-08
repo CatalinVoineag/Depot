@@ -10,14 +10,20 @@ class CartLinesController < ApplicationController
 	end
 
 	def create
-		@cart_line = CartLine.new(cart_lines_params)
-		if @cart_line.save
-      flash[:notice] = "Product added to cart"
-      redirect_to :back
-    else
-      flash.now[:error] = AlertsHelper.getErrorAlertMessages(@cart_line)
-      redirect_to :back
-  	end
+		byebug
+		if product_instance(cart_lines_params)
+			flash[:notice] = "Product added to cart"
+	    redirect_to :back
+	  else
+			@cart_line = CartLine.new(cart_lines_params)
+			if @cart_line.save
+	      flash[:notice] = "Product added to cart"
+	      redirect_to :back
+	    else
+	      flash.now[:error] = AlertsHelper.getErrorAlertMessages(@cart_line)
+	      redirect_to :back
+	  	end
+	  end
 	end
 
 	def edit

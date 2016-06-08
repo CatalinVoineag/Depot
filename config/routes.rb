@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   resources :users
 	resources :products
 	resources :cart_lines, only: [:index,  :create, :edit, :update, :destroy]
+	resources :carts, only: [:index, :edit, :update]
 
 end
