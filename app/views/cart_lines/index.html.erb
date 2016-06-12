@@ -1,0 +1,21 @@
+<h1>Shopping Cart</h1>
+
+
+<ul>
+	<% @cart_lines.each do |line| %>
+		<%= simple_form_for line, url: edit_quantity_path(line), method: :post do |f| %>
+			<li><h3><%= line.product.name %></h3></li>
+			<li><h4>Price: <%= price_tag(line) %></h4></li>
+			<li><h4>Quantity: <%= f.input :quantity, class:'form-control', label: false %></h4></li>
+		<% end %>
+	<% end %>
+</ul>
+
+
+
+<br><br><br>
+<h2>Total Price <%= total_price(current_cart) %></h2>
+
+
+
+

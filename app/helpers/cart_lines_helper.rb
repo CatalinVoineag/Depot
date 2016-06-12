@@ -1,18 +1,15 @@
 module CartLinesHelper
 
-	def product_instance(params)
-		#byebug
-		cart_lines = current_cart.cart_lines
-		result = ''
-		cart_lines.each do |line|
-			if line.product_id == params[:product_id]
-				line.quantity += 1
-				result = true
-			else
-				result = false
-			end
+	def price_tag(line)
+		number_to_currency(line.product.price * line.quantity)
+	end
+
+	def total_price(cart)
+		total = 0
+		cart.cart_lines.each do |line|
+			total += (line.product.price * line.quantity) 
 		end
-		return result
+		number_to_currency(total)
 	end
 
 end

@@ -10,23 +10,21 @@ class CartLinesController < ApplicationController
 	end
 
 	def create
-		byebug
-		if product_instance(cart_lines_params)
+		if CartLine.create_cart_line(cart_lines_params, current_cart) == true
 			flash[:notice] = "Product added to cart"
-	    redirect_to :back
-	  else
-			@cart_line = CartLine.new(cart_lines_params)
-			if @cart_line.save
-	      flash[:notice] = "Product added to cart"
-	      redirect_to :back
-	    else
-	      flash.now[:error] = AlertsHelper.getErrorAlertMessages(@cart_line)
-	      redirect_to :back
-	  	end
-	  end
+			redirect_to :back
+		else
+			#flash.now[:error] = AlertsHelper.getErrorAlertMessages(@cart_line)
+			flash.now[:error] = "Error"
+		  redirect_to :back
+		end
 	end
 
-	def edit
+	def edit_quantity
+		@cart_line = CartLine.find(params[:id])
+		quantity = params[:cart_line][:quantity].to_i
+		@cart_line.edit_line_quantity(quantity)
+		redirect_to cart_lines_path
 	end
 
 	def update

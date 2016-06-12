@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   resources :users
 	resources :products
-	resources :cart_lines, only: [:index,  :create, :edit, :update, :destroy]
+	resources :cart_lines, only: [:index,  :create, :destroy, :edit, :update]
+	match '/edit_quantity/:id', to: 'cart_lines#edit_quantity', via: :post, as: :edit_quantity
 	resources :carts, only: [:index, :edit, :update]
 
 end

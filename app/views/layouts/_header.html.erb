@@ -15,7 +15,9 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
-          <li><%= link_to "Cart #{current_cart.cart_lines.count}", carts_path %></li>
+          <% unless current_cart.nil? %>
+            <li><%= link_to "Cart #{cart_lines_count(current_cart)}", cart_lines_path %></li>
+          <% end %>
           <li><%= link_to 'Products', products_path %></li>
           <li><%= link_to 'Users', users_path %></li>
           <li><%= link_to 'Profile', user_path(current_user.id) %></li>
