@@ -2,21 +2,21 @@ class ProductsController < ApplicationController
 
 	before_action :set_product, only: [:edit, :update, :destroy, :show]
 
-	after_filter :verify_authorized
+#	after_filter :verify_authorized
 
 	def index
 		@products = Product.all
-		authorize @products
+	#	authorize @products
 	end
 
 	def new
 		@product = Product.new
-		authorize @product
+	#	authorize @product
 	end
 
 	def create
 		@product = Product.new(product_params)
-		authorize @product
+	#	authorize @product
 		respond_to do |format|
       if @product.save
         format.html { redirect_to products_path, notice: "Product Created" }
@@ -31,11 +31,11 @@ class ProductsController < ApplicationController
 
 	def edit
 		#byebug
-		authorize @product
+	#	authorize @product
 	end
 
 	def update
-		authorize @product
+	#	authorize @product
 		if @product.update_attributes(product_params)
 			flash[:notice] = "Product Updated"
 			redirect_to products_path
@@ -46,12 +46,12 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		authorize @product
+#		authorize @product
 		redirect_to products_path
 	end
 
 	def destroy
-		authorize @product
+#		authorize @product
 		@product.destroy
 		flash[:notice] = "Product Deleted"
 	end

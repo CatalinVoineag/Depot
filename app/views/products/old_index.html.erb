@@ -1,0 +1,20 @@
+<h1>Products</h1>
+
+<% if policy(@products).create? %>
+	<%= link_to "New Product", new_product_path, class: 'btn btn-primary' %>
+<% end %>
+
+<br><br>
+
+<ul>
+	<% @products.each do |product| %>
+		<li><%= product.name %></li><br>
+		<% if policy(@products).edit? %>
+			<li><%= link_to "Edit", edit_product_path(product) %></li><br>
+		<% end %>
+		<li><%= product.description %></li><br>
+		<li><%= number_to_currency(product.price) %></li>
+		<li><%= button_to "Add to cart", cart_lines_path(product_id: product.id, cart_id: current_cart.id), class: 'btn btn-success' %></li>
+		<br><br>
+	<% end %>
+</ul>
