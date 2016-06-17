@@ -31,6 +31,9 @@ class CartLinesController < ApplicationController
 	end
 
 	def destroy
+		@cart_line = CartLine.find(params[:id])
+		@cart_line.destroy
+		redirect_to cart_lines_path
 	end
 
 	private

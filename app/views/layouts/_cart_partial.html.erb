@@ -1,0 +1,11 @@
+<% if current_user %>
+	 <div class="header_top_left">
+	  <div class="box_11">
+	  <%= link_to cart_lines_path do %>
+			<h4><p>Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> <%= cart_lines_count(current_cart) %> items)</p><img src="images/bag.png" alt=""/><div class="clearfix"> </div></h4>
+		<% end %>
+	</div>
+	  <p class="empty"><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+	  <div class="clearfix"> </div>
+	</div>
+<% end %>
