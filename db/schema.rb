@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160612155943) do
+ActiveRecord::Schema.define(version: 20160618142225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bill_addresses", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street_address_1"
+    t.string   "street_address_2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postcode"
+    t.integer  "phone"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
   create_table "cart_lines", force: :cascade do |t|
     t.integer  "cart_id"
@@ -39,6 +54,21 @@ ActiveRecord::Schema.define(version: 20160612155943) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "delivery_addresses", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street_address_1"
+    t.string   "street_address_2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "postcode"
+    t.integer  "phone"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "links", force: :cascade do |t|
     t.string   "title"
     t.string   "link"
@@ -59,10 +89,11 @@ ActiveRecord::Schema.define(version: 20160612155943) do
     t.decimal  "total_price"
     t.string   "status"
     t.string   "email"
-    t.string   "bill_address"
-    t.string   "ship_address"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "delivery_address_id"
+    t.integer  "bill_address_id"
+    t.integer  "order_number"
   end
 
   create_table "posts", force: :cascade do |t|

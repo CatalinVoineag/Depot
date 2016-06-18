@@ -31,7 +31,7 @@
 			
 		 </div>
 		 <div class="col-md-3 cart-total">
-			 <a class="continue" href="#">Continue to basket</a>
+			 <%= link_to "Continue Shoping", products_path, class:'continue' %>
 			 <div class="price-details">
 				 <h3>Price Details</h3>
 				 <span>Total</span>
@@ -48,7 +48,18 @@
 			   <div class="clearfix"> </div>
 			 </ul>
 			 <div class="clearfix"></div>
-			 <a class="order" href="#">Place Order</a>
+			 
+			 <%= simple_form_for :order, url: create_order_path do |f| %>
+			   <%= f.submit "Place Order", class:'order' %>
+			 <% end %>
+
+
+
+			 
+
+
+
+
 			 <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>

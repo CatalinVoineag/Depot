@@ -12,4 +12,7 @@ Rails.application.routes.draw do
 	match '/edit_quantity/:id', to: 'cart_lines#edit_quantity', via: :post, as: :edit_quantity
 	resources :carts, only: [:index, :edit, :update]
 
+	resources :orders, only: [:index]
+	match '/create_order', to: 'orders#create', via: :post, as: :create_order 
+
 end
