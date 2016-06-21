@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 
 	has_one :cart
 	has_many :orders
+	has_many :bill_addresses
+	has_many :delivery_addresses
 
 	attr_accessor :remember_token
 

@@ -49,9 +49,11 @@
 			 </ul>
 			 <div class="clearfix"></div>
 			 
-			 <%= simple_form_for :order, url: create_order_path do |f| %>
-			   <%= f.submit "Place Order", class:'order' %>
-			 <% end %>
+			 <%# simple_form_for :order, url: create_order_path do |f| %>
+			   <%# f.submit "Place Order", class:'order' %>
+			 <%# end %>
+
+			 <%= link_to 'Checkout', new_order_path, class:'order' %>
 
 
 

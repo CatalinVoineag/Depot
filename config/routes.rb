@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   get 	 'login' 	=> 'sessions#new'
   post 	 'login'	=> 'sessions#create'
   delete 'logout' => 'sessions#destroy'
@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 	match '/edit_quantity/:id', to: 'cart_lines#edit_quantity', via: :post, as: :edit_quantity
 	resources :carts, only: [:index, :edit, :update]
 
-	resources :orders, only: [:index]
-	match '/create_order', to: 'orders#create', via: :post, as: :create_order 
+	resources :orders
+#	match '/create_order', to: 'orders#create', via: :post, as: :create_order 
+
+	resources :delivery_addresses
+	resources :bill_addresses
 
 end

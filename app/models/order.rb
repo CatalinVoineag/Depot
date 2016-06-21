@@ -1,10 +1,13 @@
 class Order < ActiveRecord::Base
 
-	validates_presence_of :user_id, :total_price, :email
+	#validates_presence_of :user_id, :total_price, :email
 
 	has_many :order_lines
+	has_one :delivery_address
+	has_one :bill_address
 
 	belongs_to :user
+
 
 	def self.create_order(user, cart)
 		result = ''
@@ -31,6 +34,21 @@ class Order < ActiveRecord::Base
 			result = false
 		end
 		result
+	end
+
+	def create_bill_in_order(params)
+		params[:order_id] = id.to_s
+		params.permit!
+		#byebug
+		bill = BillAddress.new(params)
+		#bill.attributes(params)
+		if bill.valid?
+			bill.save!
+			return true
+		else
+			self.errors.add('', bill.errors.full_messages.join(''))
+			return false
+		end
 	end
 
 
