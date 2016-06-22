@@ -39,14 +39,25 @@ class Order < ActiveRecord::Base
 	def create_bill_in_order(params)
 		params[:order_id] = id.to_s
 		params.permit!
-		#byebug
 		bill = BillAddress.new(params)
-		#bill.attributes(params)
 		if bill.valid?
 			bill.save!
 			return true
 		else
 			self.errors.add('', bill.errors.full_messages.join(''))
+			return false
+		end
+	end
+
+	def create_delivery_in_order(params)
+		params[:order_id] = id.to_s
+		params.permit!
+		delivery = DeliveryAddress.new(params)
+		if delivery.valid?
+			delivery.save!
+			return true
+		else
+			self.errors.add('', delivery.errors.full_messages.join(''))
 			return false
 		end
 	end

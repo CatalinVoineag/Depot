@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		if @order.save
-			if @order.create_bill_in_order(params[:bill_address])
+			if @order.create_bill_in_order(params[:bill_address]) && @order.create_delivery_in_order(params[:delivery_address])
 				flash[:notice] = "success"
 				redirect_to orders_path
 			else
@@ -23,14 +23,6 @@ class OrdersController < ApplicationController
 			flash.now[:error] = AlertsHelper.getErrorAlertMessages(@order)
 			redirect_to :back
 		end
-
-		#if Order.create_order(current_user, current_cart)
-		#	flash[:notice] = "Order Created"
-		#	redirect_to orders_path
-		#else
-		#	flash[:error] = "error"
-		#	redirect_to cart_lines_path
-		#end
 	end
 
 	private

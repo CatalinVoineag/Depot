@@ -9,7 +9,6 @@ class BillAddressesController < ApplicationController
 
   def create
   	@bill_address = BillAddress.new(bill_params)
-  	byebug
 		if @bill_address.save
 			flash[:notice] = "success"
 		else
