@@ -1,0 +1,33 @@
+<div class='container col-md-4'>
+	<%= form_for @bill do |bill_f| %>
+
+		<%= bill_f.label :first_name %>
+		<%= bill_f.text_field :first_name, class:'form-control' %>
+
+		<%= bill_f.label :last_name %>
+		<%= bill_f.text_field :last_name, class:'form-control' %>
+	
+		<%= bill_f.label :street_address_1 %>
+		<%= bill_f.text_field :street_address_1, class:'form-control' %>
+	
+		<%= bill_f.label :street_address_2 %>
+		<%= bill_f.text_field :street_address_2, class:'form-control' %>
+	
+		<%= bill_f.label :city %>
+		<%= bill_f.text_field :city, class:'form-control' %>
+	
+		<%= bill_f.label :country %>
+		<%= bill_f.text_field :country, class:'form-control' %>
+	
+		<%= bill_f.label :postcode %>
+		<%= bill_f.text_field :postcode, class:'form-control' %>
+	
+		<%= bill_f.label :phone %>
+		<%= bill_f.text_field :phone, class:'form-control' %>
+
+		<%= bill_f.submit @bill.new_record? ? 'Create Bill Address' : 'Update', class: 'btn btn-primary' %>
+		<% unless @bill.new_record? %>
+			<%= link_to 'Delete', bill_address_path(@bill), method: :delete, confirm: 'Are you sure?', class:'btn btn-danger' %>
+		<% end %>
+	<% end %>
+</div>

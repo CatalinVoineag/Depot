@@ -42,8 +42,51 @@
 		   <div class="clearfix"> </div>
 	   </form>
 	</div>
+
+	<div class="col-md-4">
+ 		<h1>Billing Addresses</h1>
+ 		<ul>
+ 			<% current_user.bill_addresses.each do |bill| %>
+ 				<li><%= bill.first_name %></li>
+ 				<li><%= bill.last_name %></li>
+ 				<li><%= bill.street_address_1 %></li>
+ 				<li><%= bill.street_address_2 %></li>
+ 				<li><%= bill.city %></li>
+ 				<li><%= bill.country %></li>
+ 				<li><%= bill.postcode %></li>
+ 				<li><%= bill.phone %></li>
+ 				<li><%= link_to 'Edit', edit_bill_address_path(bill), class:'btn btn-primary' %></li>
+ 				<li><%= link_to 'Delete', bill_address_path(bill), method: :delete, class:'btn btn-danger' %></li>
+ 				<br><br>
+ 			<% end %>	
+ 		</ul>
+ 	</div>
+ 	<div class="col-md-offset-4">
+ 		<h1>Delivery Addresses</h1>
+ 		<ul>
+ 			<% current_user.delivery_addresses.each do |del| %>
+ 				<li><%= del.first_name %></li>
+ 				<li><%= del.last_name %></li>
+ 				<li><%= del.street_address_1 %></li>
+ 				<li><%= del.street_address_2 %></li>
+ 				<li><%= del.city %></li>
+ 				<li><%= del.country %></li>
+ 				<li><%= del.postcode %></li>
+ 				<li><%= del.phone %></li>
+ 				<li><%= link_to 'Edit', edit_delivery_address_path(del), class:'btn btn-primary' %></li>
+ 				<li><%= link_to 'Delete', delivery_address_path(del), method: :delete, class:'btn btn-danger' %></li>
+ 				<br><br>
+ 			<% end %>	
+ 		</ul>
+ 	</div>
+
+
+
    </div>
  </div>
+
+
+
  <div class="container">
 			<div class="cssmenu">
 		   <ul>

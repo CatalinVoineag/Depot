@@ -2,6 +2,8 @@
 	
 	<h2>User</h2>
 
+	<%= link_to "Back", :back, class:"btn btn-primary" %> 
+
 	<%= form_for @order do |f| %>
 		<div class="col-md-4">
 		<form class="form-signin">
@@ -95,6 +97,7 @@
 </div>
 
 <script>
+
 	var delivery_check = $('#delivery')
 	var bill_fields = $('#bill_div input')
 	var delivery_fields = $('#delivery_div input')
@@ -102,25 +105,18 @@
 	var delivery_values = []
 
 	delivery_check.click(function(){
-	if(delivery_check.val() == 1) {
-		//console.log('hjere');
-		//debugger;
-		$.each([bill_fields.length], function(field, i){
-			//bill_values.push($(field[i]).val())
-			alert( "Index #" + field + ": " + i )
-			
-		})
-	} else {
-		bill_values = []
-	}
-
-	console.log(bill_values)
-	$.each([delivery_fields], function(field, i){
-	
-				$(field[i]).val(bill_values[i])
-			})
-
-})
-
+		if ($(delivery_check)[0].checked == true) {
+			for (i = 0; i < bill_fields.length; i++) {
+				bill_values.push($(bill_fields[i]).val());
+			};
+			for (i = 0; i < delivery_fields.length; i ++) {
+				$(delivery_fields[i]).val(bill_values[i]);
+			};
+		} else {
+			for (i = 0; i < delivery_fields.length; i++){
+				$(delivery_fields[i]).val('');
+			};
+		};
+});
 
 </script>

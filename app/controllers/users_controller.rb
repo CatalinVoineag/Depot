@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         log_in @user
-        format.html { redirect_to @user, notice: "User Created" }
+        format.html { redirect_to root_path, notice: "User Created" }
         format.json { render :show, status: :created, location: @user }
       else
         flash.now[:error] = AlertsHelper.getErrorAlertMessages(@user)
@@ -35,8 +35,8 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: "Profile Updated" }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_to root_path, notice: "Profile Updated" }
+        #format.json { render :index, status: :created, location: @user }
       else
         flash.now[:error] = AlertsHelper.getErrorAlertMessages(@user)
         format.html { render :edit }
