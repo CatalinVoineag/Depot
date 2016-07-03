@@ -1,108 +1,30 @@
-<%= render 'layouts/page_header' %>
-  <div class="account-in">
- 	  <div class="container">
- 	  <%= simple_form_for @user do |f| %>
- 	   <form> 
-	   <div class="register-top-grid">
-		<h2>PERSONAL INFORMATION</h2>
-		 <div>
-			<span>First Name<label>*</label></span>
-			<%= f.input_field :name %> 
-		 </div>
-		 <div>
-			<span>Last Name<label>*</label></span>
-			<input type="text"> 
-		 </div>
-		 <div>
-			 <span>Email Address<label>*</label></span>
-			 <%= f.email_field :email %> 
-		 </div>
-
-
+<%= simple_form_for @user do |f| %>
+	<div class="col-md-6 col-offset-3">
 		
-     <div class="register-bottom-grid">
-		    <h2>LOGIN INFORMATION</h2>
-			 <div>
-				<span>Password<label>*</label></span>
-				<%= f.password_field :password %>
-			 </div>
-			 <div>
-				<span>Confirm Password<label>*</label></span>
-				<%= f.password_field :password_confirmation %>
-			 </div>
-			 <div class="clearfix"> </div>
-	 </div>
-	  </form>
-	  
-	<div class="clearfix"> </div>
-	<div class="register-but">
-   <form>
-   	<%= f.submit params[:action] == "new" ? "Create User" : "Update User" %>
-	<% end %>
-		   <div class="clearfix"> </div>
-	   </form>
-	</div>
-
-	<div class="col-md-4">
- 		<h1>Billing Addresses</h1>
- 		<ul>
- 			<% current_user.bill_addresses.each do |bill| %>
- 				<li><%= bill.first_name %></li>
- 				<li><%= bill.last_name %></li>
- 				<li><%= bill.street_address_1 %></li>
- 				<li><%= bill.street_address_2 %></li>
- 				<li><%= bill.city %></li>
- 				<li><%= bill.country %></li>
- 				<li><%= bill.postcode %></li>
- 				<li><%= bill.phone %></li>
- 				<li><%= link_to 'Edit', edit_bill_address_path(bill), class:'btn btn-primary' %></li>
- 				<li><%= link_to 'Delete', bill_address_path(bill), method: :delete, class:'btn btn-danger' %></li>
- 				<br><br>
- 			<% end %>	
- 		</ul>
- 	</div>
- 	<div class="col-md-offset-4">
- 		<h1>Delivery Addresses</h1>
- 		<ul>
- 			<% current_user.delivery_addresses.each do |del| %>
- 				<li><%= del.first_name %></li>
- 				<li><%= del.last_name %></li>
- 				<li><%= del.street_address_1 %></li>
- 				<li><%= del.street_address_2 %></li>
- 				<li><%= del.city %></li>
- 				<li><%= del.country %></li>
- 				<li><%= del.postcode %></li>
- 				<li><%= del.phone %></li>
- 				<li><%= link_to 'Edit', edit_delivery_address_path(del), class:'btn btn-primary' %></li>
- 				<li><%= link_to 'Delete', delivery_address_path(del), method: :delete, class:'btn btn-danger' %></li>
- 				<br><br>
- 			<% end %>	
- 		</ul>
- 	</div>
-
-
-
-   </div>
- </div>
-
-
-
- <div class="container">
-			<div class="cssmenu">
-		   <ul>
-				<li class="active"><a href="#">Privacy</a></li>
-				<li><a href="#">Terms</a></li>
-				<li><a href="#">Shop</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="contact.html">Contact</a></li>
-		  </ul>
+		<div class="from-group">
+			<%= f.label :name %>
+			<%= f.input_field :name, label: false, class:'form-control' %>
 		</div>
-			<ul class="social">
-				<li><a href=""> <i class="instagram"> </i> </a></li>
-				<li><a href=""><i class="fb"> </i> </a></li>
-				<li><a href=""><i class="tw"> </i> </a></li>
-			 </ul>
+
+		<div class="from-group">
+			<%= f.label :email %>
+			<%= f.email_field :email, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :password %>	
+			<%= f.password_field :password, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :password_confirmation, "Confirmation" %>
+			<%= f.password_field :password_confirmation, label: false, class:'form-control' %>
+		</div>
+
+		<br>
+		<%= f.submit @user.new_record? ? "Create User" : "Update User" , class:'btn btn-primary' %>
+
 	</div>
-  <div class="clearfix"></div>
-	</div>
-</div>
+<% end %>
+
+

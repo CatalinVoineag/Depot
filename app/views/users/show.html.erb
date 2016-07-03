@@ -2,3 +2,41 @@
 
 <h2>Name is <%= @user.name %></h2>
 <h2>Email is <%= @user.email %></h2>
+
+<div class="col-md-6">
+	<h2>Billind Addresses</h2>
+	<ul>
+		<% @user.bill_addresses.each do |bill| %>
+			<li><%= bill.first_name %></li>
+			<li><%= bill.last_name %></li>
+			<li><%= bill.street_address_1 %></li>
+			<li><%= bill.street_address_2 %></li>
+			<li><%= bill.city %></li>
+			<li><%= bill.country %></li>
+			<li><%= bill.postcode %></li>
+			<li><%= bill.phone %></li>
+			<li><%= link_to "Edit", edit_bill_address_path(bill), class: 'btn btn-success btn-xs' %></li>
+			<li><%= link_to 'Delete', bill_address_path(bill), method: :delete, confirm: 'Are you sure?', class:'btn btn-danger btn-xs' %></li>
+			<br><br>
+		<% end %>
+	</ul>
+</div>
+
+<div class="col-md-6">
+	<h2>Delivery Addresses</h2>
+	<ul>
+		<% @user.delivery_addresses.each do |delivery| %>
+			<li><%= delivery.first_name %></li>
+			<li><%= delivery.last_name %></li>
+			<li><%= delivery.street_address_1 %></li>
+			<li><%= delivery.street_address_2 %></li>
+			<li><%= delivery.city %></li>
+			<li><%= delivery.country %></li>
+			<li><%= delivery.postcode %></li>
+			<li><%= delivery.phone %></li>
+			<li><%= link_to "Edit", edit_delivery_address_path(delivery), class:'btn btn-success btn-xs' %></li>
+			<li><%= link_to 'Delete', delivery_address_path(delivery), method: :delete, confirm: 'Are you sure?', class:'btn btn-danger btn-xs' %></li>
+			<br><br>
+		<% end %>
+	</ul>
+</div>

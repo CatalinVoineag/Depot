@@ -1,41 +1,25 @@
-<%= render 'layouts/page_header' %>
- <div class="account-in">
- 	 <div class="container">
- 	   <h3>Account</h3>
-	<div class="col-md-7 account-top">
-	  <%= form_for(:session, url: login_path) do |f| %>
-		  <form>
-				<div> 	
-					<span>Email*</span>
-					<%= f.email_field :email %> 
-				</div>
-				<div> 
-					<span class="pass">Password*</span>
-					<%= f.password_field :password, label:false %>
-				</div>				
-				<%= f.submit "Login" %>
-				<%= link_to "New user?", new_user_path, class:'btn btn-default' %>
-		   </form>
+<%= form_for(:session, url: login_path) do |f| %>
+	<div class="col-md-6 col-offset-3">
+
+		<div class="from-group">
+			<%= f.label :email %>
+			<%= f.email_field :email, label: false, class:'form-control' %>
+		</div>
+
+		<div class="from-group">
+			<%= f.label :password %>	
+			<%= f.password_field :password, label: false, class:'form-control' %>
+		</div>
+
+		<%= f.label :remember_me do %>
+			<%= f.check_box :remember_me %>
+			<span>Remeber me</span>
 		<% end %>
+
+		<br>
+		<%= f.submit "Log in", class:'btn btn-primary' %>
+
+		<p>New user? <%= link_to 'Sign up now!', new_user_path %></p>
 	</div>
- </div>
- <br><br><br>
- <div class="container">
-			 <div class="cssmenu">
-				 <ul>
-					<li class="active"><a href="#">Privacy</a></li>
-					<li><a href="#">Terms</a></li>
-					<li><a href="#">Shop</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="contact.html">Contact</a></li>
-				 </ul>
-			</div>
-				<ul class="social">
-					<li><a href=""> <i class="instagram"> </i> </a></li>
-					<li><a href=""><i class="fb"> </i> </a></li>
-					<li><a href=""><i class="tw"> </i> </a></li>
-			    </ul>
-   </div>
-    <div class="clearfix"></div>
- 	</div>
- </div>
+<% end %>
+
