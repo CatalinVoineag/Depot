@@ -5,19 +5,15 @@ class SessionsController < ApplicationController
 
   def create
   	user = User.find_by(email: params[:session][:email].downcase)
-  	#respond_to do |format|
-  		if user && user.authenticate(params[:session][:password])
-  			log_in user
-        set_cart
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-  			redirect_back_or products_path
-	  	else
-	  		flash.now[:error] = 'error'
-        render :new
-	  	#	format.html { render :new }
-	  #		format.json { render json: user.errors, status: :unprocessable_entity }
-	  	end
-  	#end
+		if user && user.authenticate(params[:session][:password])
+			log_in user
+      set_cart
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+			redirect_back_or products_path
+  	else
+  		flash.now[:danger] = 'Invalid email/password combination'
+      render :new
+  	end
   end
 
   def destroy

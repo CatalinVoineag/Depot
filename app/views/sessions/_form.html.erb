@@ -3,21 +3,18 @@
 
 		<div class="from-group">
 			<%= f.label :email %>
-			<%= f.email_field :email, label: false, class:'form-control' %>
+			<%= f.email_field :email, class:'form-control' %>
 		</div>
 
 		<div class="from-group">
 			<%= f.label :password %>	
-			<%= f.password_field :password, label: false, class:'form-control' %>
+			<%= f.password_field :password, class:'form-control' %>
 		</div>
 
-		<%= f.label :remember_me do %>
-			<%= f.check_box :remember_me %>
-			<span>Remeber me</span>
-		<% end %>
+
 
 		<br>
-		<%= f.submit "Log in", class:'btn btn-primary' %>
+		<%= f.submit "Sign in", class:'btn btn-primary' %>
 
 		<p>New user? <%= link_to 'Sign up now!', new_user_path %></p>
 	</div>

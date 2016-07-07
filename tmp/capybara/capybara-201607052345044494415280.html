@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reddit</title>
+  <link rel="stylesheet" media="all" href="/assets/application-007fa80da09352d268eae7355c6db7435464c60dc9f6aa6a8816130bb37b71e5.css" data-turbolinks-track="true" />
+  <script src="/assets/application-0de43f210c8e1c50e5b2dcba713ce0b9ab6d43bf15f2af39f2be063e0e904e8a.js" data-turbolinks-track="true"></script>
+  
+</head>
+<body>
+
+	<!-- Header -->
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+          <li><a href="/login">Log in</a></li>
+          <li><a href="/users/new">Sign up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+		<!-- Flash Messages -->
+	  <div id="flashContainer" class="alert alert-danger" role="alert" >
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div id="flashMessage">
+      error
+    </div>
+  </div>
+
+
+	<div class="container">
+		<form action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+	<div class="col-md-6 col-offset-3">
+
+		<div class="from-group">
+			<label for="session_email">Email</label>
+			<input label="false" class="form-control" type="email" name="session[email]" id="session_email" />
+		</div>
+
+		<div class="from-group">
+			<label for="session_password">Password</label>	
+			<input label="false" class="form-control" type="password" name="session[password]" id="session_password" />
+		</div>
+
+		<label for="session_remember_me">
+			<input name="session[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="session[remember_me]" id="session_remember_me" />
+			<span>Remeber me</span>
+</label>
+		<br>
+		<input type="submit" name="commit" value="Sign in" class="btn btn-primary" />
+
+		<p>New user? <a href="/users/new">Sign up now!</a></p>
+	</div>
+</form>
+
+	</div>
+
+
+</body>
+</html>
