@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-feature 'login and create product' do 
-	scenario "login as admin" do 
-
+feature 'login and create product' do
+	before do 
 		FactoryGirl.create(:user)
+		FactoryGirl.create(:product)
+	end
+	scenario "login as admin" do 
 
 		visit('/')
 		click_link("Log in")
@@ -31,5 +33,8 @@ feature 'login and create product' do
 
 		expect(page).to have_content("Product Created")
 
+
 	end
+	
 end 
+
