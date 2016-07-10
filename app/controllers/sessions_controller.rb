@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+
+  before_filter :require_user, :except => [:create, :new, :destroy]
   
   def new
   end

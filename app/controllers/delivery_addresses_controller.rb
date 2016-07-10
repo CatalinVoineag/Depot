@@ -1,5 +1,7 @@
 class DeliveryAddressesController < ApplicationController
 	
+  before_action :require_user
+ # before_action :correct_user
 	before_action :set_delivery_address, only: [:update, :edit, :destroy]
 
   def index

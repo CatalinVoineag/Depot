@@ -43,4 +43,14 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_token, nil)
 	end
 
+	def self.correct_user_method(user, id)
+		result = ''
+		if user.id == id.to_i
+			result =  true
+		else
+			result = false
+		end
+		result
+	end
+
 end

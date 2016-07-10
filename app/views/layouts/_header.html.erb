@@ -19,7 +19,7 @@
             <li><%= link_to "Cart #{cart_lines_count(current_cart)}", cart_lines_path %></li>
           <% end %>
           <li><%= link_to 'Products', products_path %></li>
-          <li><%= link_to 'Users', users_path %></li>
+          <li><%= link_to 'Users', users_path if current_user.admin? %></li>
           <li><%= link_to 'Profile', user_path(current_user.id) %></li>
           <li><%= link_to 'Edit Profile', edit_user_path(current_user) %></li>
           <li><%= link_to 'Log out', logout_path, method: :delete %><</li>
