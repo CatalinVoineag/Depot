@@ -1,6 +1,8 @@
 <div class='container col-md-4'>
 	<%= form_for @bill do |bill_f| %>
 
+		<%= bill_f.hidden_field :user_id, value: current_user.id %>
+
 		<%= bill_f.label :first_name %>
 		<%= bill_f.text_field :first_name, class:'form-control' %>
 
@@ -25,7 +27,7 @@
 		<%= bill_f.label :phone %>
 		<%= bill_f.text_field :phone, class:'form-control' %>
 
-		<%= bill_f.submit @bill.new_record? ? 'Create Bill Address' : 'Update', class: 'btn btn-primary' %>
+		<%= bill_f.submit @bill.new_record? ? 'Create Billing Address' : 'Update', class: 'btn btn-primary' %>
 		<% unless @bill.new_record? %>
 			<%= link_to 'Delete', bill_address_path(@bill), method: :delete, confirm: 'Are you sure?', class:'btn btn-danger' %>
 		<% end %>

@@ -43,14 +43,12 @@ class User < ActiveRecord::Base
 		update_attribute(:remember_token, nil)
 	end
 
-	def self.correct_user_method(user, id)
-		result = ''
-		if user.id == id.to_i
-			result =  true
+	def self.edit_correct_user_data(user, model)
+		if model.constantize.where(user_id: user.id).present?
+			return true
 		else
-			result = false
+			return false
 		end
-		result
 	end
 
 end

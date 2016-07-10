@@ -1,24 +1,27 @@
 class DeliveryAddressesController < ApplicationController
 	
-  before_action :require_user
- # before_action :correct_user
-	before_action :set_delivery_address, only: [:update, :edit, :destroy]
+	before_action :set_delivery_address, only: [:update, :edit, :destroy, :show]
 
-  def index
-  end
+  after_filter :verify_authorized
 
   def show
+    authorize @del
+    render :edit
   end
 
   def new
+    @del = DeliveryAddress.new
+    authorize @del
   end
 
   def edit
   	@del
+    authorize @del
   end
 
   def update
-  	respond_to do |format|
+  	authorize @del
+    respond_to do |format|
       if @del.update_attributes(delivery_params)
         format.html { redirect_to edit_user_path(current_user), notice: "Delivery Address Updated" }
       else
@@ -30,10 +33,20 @@ class DeliveryAddressesController < ApplicationController
   end
 
   def create
+    @del = DeliveryAddress.new(delivery_params)
+    authorize @del
+    if @del.save
+      flash[:notice] = "Delivery Address Created"
+      redirect_to user_path(current_user)
+    else
+      render :new
+      flash.now[:error] = AlertsHelper.getErrorAlertMessages(@del)
+    end 
   end
 
   def destroy
-  	@del.destroy
+  	authorize @del
+    @del.destroy
     flash[:success] = "Delivery Address Deleted"
     redirect_to edit_user_path(current_user)
   end

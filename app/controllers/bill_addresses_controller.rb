@@ -1,29 +1,34 @@
 class BillAddressesController < ApplicationController
   
-  before_action :set_bill, only: [:edit, :destroy, :update]
+  before_action :set_bill, only: [:edit, :destroy, :update, :show]
 
-  def index
-  end
+  after_filter :verify_authorized
 
   def new
-  	@bil_address = BillAddress.new
+  	@bill = BillAddress.new
+    authorize @bill
   end
 
   def create
-  	@bill_address = BillAddress.new(bill_params)
-		if @bill_address.save
+  	@bill = BillAddress.new(bill_params)
+		authorize @bill
+    if @bill.save
 			flash[:notice] = "success"
+      redirect_to user_path(current_user)
 		else
-			flash.now[:error] = AlertsHelper.getErrorAlertMessages(@bil_address)
+      render :new
+			flash.now[:error] = AlertsHelper.getErrorAlertMessages(@bill)
 		end
 
   end
 
   def edit
     @bill
+    authorize @bill
   end
 
   def update
+    authorize @bill
     respond_to do |format|
       if @bill.update_attributes(bill_params)
         format.html { redirect_to edit_user_path(current_user), notice: "Bill Address Updated" }
@@ -36,9 +41,12 @@ class BillAddressesController < ApplicationController
   end
 
   def show
+    authorize @bill
+    render :edit
   end
 
   def destroy
+    authorize @bill
     @bill.destroy
     flash[:success] = "Bill Address Deleted"
     redirect_to edit_user_path(current_user)

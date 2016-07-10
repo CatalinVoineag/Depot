@@ -3,9 +3,9 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :set_user, only: [:edit, :update, :show, :destroy]
-  before_action :admin_user, only: [:destroy, :index]
+  before_action :admin_user, only: [:index]
 
-  after_filter :verify_authorized, only: [ :index, :destroy] 
+  after_filter :verify_authorized, only: [ :index] 
 
   def index
     @users = User.all
@@ -75,8 +75,11 @@ class UsersController < ApplicationController
 
     # Confirms the correct user
     def correct_user
-      user = User.correct_user_method(current_user, params[:id])
-      redirect_to root_path unless user == true || current_user.admin?
+      @user = User.find(params[:id])
+      unless @user == current_user
+        flash[:error] = "You are not allowed to perform this action"
+        redirect_to root_path 
+      end
     end
 
     # Sets the current user for edit show update destroy

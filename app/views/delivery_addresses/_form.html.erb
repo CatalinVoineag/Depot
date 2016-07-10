@@ -1,6 +1,8 @@
 <div class='container col-md-4'>
 	<%= form_for @del do |del_f| %>
 
+		<%= del_f.hidden_field :user_id, value: current_user.id %>
+
 		<%= del_f.label :first_name %>
 		<%= del_f.text_field :first_name, class:'form-control' %>
 
@@ -25,7 +27,7 @@
 		<%= del_f.label :phone %>
 		<%= del_f.text_field :phone, class:'form-control' %>
 
-		<%= del_f.submit @del.new_record? ? 'Create del Address' : 'Update', class: 'btn btn-primary' %>
+		<%= del_f.submit @del.new_record? ? 'Create Delivery Address' : 'Update', class: 'btn btn-primary' %>
 		<% unless @del.new_record? %>
 			<%= link_to 'Delete', delivery_address_path(@del), method: :delete, confirm: 'Are you sure?', class:'btn btn-danger' %>
 		<% end %>
