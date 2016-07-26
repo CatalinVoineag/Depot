@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 	has_many :order_lines
 	has_one :delivery_address
 	has_one :bill_address
+	has_one :payment
 
 	belongs_to :user
 

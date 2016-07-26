@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	has_many :orders
 	has_many :bill_addresses
 	has_many :delivery_addresses
+	has_many :payments
 
 	attr_accessor :remember_token
 
