@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
 		if @order.save
 			if @order.create_bill_in_order(params[:bill_address]) && @order.create_delivery_in_order(params[:delivery_address])
 				flash[:notice] = "success"
-				redirect_to orders_path
+				redirect_to new_order_path(anchor: 'payment')
 			else
 				flash[:error] = @order.error.full_messages.join('')
 				@order.destroy

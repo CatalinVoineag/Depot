@@ -17,5 +17,6 @@ Rails.application.routes.draw do
 
 	resources :delivery_addresses
 	resources :bill_addresses
+	resources :payments
 
 end

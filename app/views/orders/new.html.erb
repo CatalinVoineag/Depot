@@ -1,6 +1,6 @@
 <h1>New Order</h1>
 
-<%# render 'form' %>
+
 
 <section class="content">
 	<div role="tabpanel">
@@ -17,8 +17,8 @@
 	 <div class="tab-content row">
     <div role="tabpanel" class="tab-pane fade active in" id="home">
       <div class="col-md-12 fields_holder">
-        <% flash.each do |name, msg| %>
-            <% next if excluded_flash_keys.include? name
+       <!-- <%# flash.each do |name, msg| %>
+            <%# next if excluded_flash_keys.include? name
                if name == 'notice'
                  alert_class = 'alert-success'
                elsif name == 'error'
@@ -26,26 +26,26 @@
                else
                  alert_class = 'alert-warning'
                end %>
-            <% unless name == 'error' && msg == "You must be logged in to access this page" %>
-                <div id="flashContainer" class="alert <%= alert_class %> alert-dismissable" role="alert">
+            <%# unless name == 'error' && msg == "You must be logged in to access this page" %>
+                <div id="flashContainer" class="alert <%# alert_class %> alert-dismissable" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                   <div id="flashMessage">
-                    <%= msg %>
+                    <%# msg %>
                   </div>
                 </div>
-            <% end %>
-        <% end %>
+            <%# end %>
+        <%# end %> -->
         
-        <h1>Order</h1>
+        <%= render 'form' %>
 
       </div>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="payment">
       <div class="col-md-12 fields_holder">
-        <% flash.each do |name, msg| %>
-            <% next if excluded_flash_keys.include? name
+      <!--  <%# flash.each do |name, msg| %>
+            <%# next if excluded_flash_keys.include? name
                if name == 'notice'
                  alert_class = 'alert-success'
                elsif name == 'error'
@@ -53,18 +53,20 @@
                else
                  alert_class = 'alert-warning'
                end %>
-            <% unless name == 'error' && msg == "You must be logged in to access this page" %>
-                <div id="flashContainer" class="alert <%= alert_class %> alert-dismissable" role="alert">
+            <%# unless name == 'error' && msg == "You must be logged in to access this page" %>
+                <div id="flashContainer" class="alert <%# alert_class %> alert-dismissable" role="alert">
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
                   <div id="flashMessage">
-                    <%= msg %>
+                    <%# msg %>
                   </div>
                 </div>
-            <% end %>
-        <% end %>
+            <%# end %>
+        <%# end %> -->
         
-        <h1>Payment</h1>
+        <h2>Payment Information</h2>
+
+        <%= render '/payments/form' %>
 
       </div>
     </div>
