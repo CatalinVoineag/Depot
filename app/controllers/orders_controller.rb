@@ -12,7 +12,8 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.new(order_params)
 		if @order.save
-			if @order.create_bill_in_order(params[:bill_address]) && @order.create_delivery_in_order(params[:delivery_address])
+			if @order.create_bill_in_order(params[:bill_address]) && @order.create_delivery_in_order(params[:delivery_address]) && @order.create_order_lines(current_cart)
+				@order.update_attribute(:step, 'payment') 
 				flash[:notice] = "success"
 				redirect_to new_order_path(anchor: 'payment')
 			else

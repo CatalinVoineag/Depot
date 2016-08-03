@@ -9,6 +9,8 @@ class Order < ActiveRecord::Base
 
 	belongs_to :user
 
+	# attrs for creating order lines by copying cart lines
+	ATTRS_TO_REJECT = %w(id created_at updated_at order_id user_id cart_id)
 
 	def self.create_order(user, cart)
 		result = ''
@@ -61,6 +63,18 @@ class Order < ActiveRecord::Base
 			self.errors.add('', delivery.errors.full_messages.join(''))
 			return false
 		end
+	end
+
+	def create_order_lines(cart)
+		cart.cart_lines.each do |line|
+			oi = self.order_lines.new(line.attributes.delete_if { |k, _| ATTRS_TO_REJECT.include?(k) })
+			if oi.save
+				return true
+			else
+				self.errors.add("", AlertsHelper.getErrorAlertMessages(oi))
+				return false
+			end
+		end		 
 	end
 
 

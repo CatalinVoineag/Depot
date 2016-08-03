@@ -11,7 +11,7 @@
 			<%= f.hidden_field :user_id, value: current_user.id %>
 
 			<%= f.label :email %>
-			<%= f.email_field :email , class:'form-control' %>
+			<%= f.email_field :email , class:'form-control', value: form_value(:email) %>
 		
 	<br>
 
@@ -22,28 +22,28 @@
 			<%= bill_f.hidden_field :user_id, value: current_user.id %>
 
 				<%= bill_f.label :first_name %>
-				<%= bill_f.text_field :first_name, class:'form-control' %>
+				<%= bill_f.text_field :first_name, class:'form-control', value: form_value(:first_name, :bill_address) %>
 
 				<%= bill_f.label :last_name %>
-				<%= bill_f.text_field :last_name, class:'form-control' %>
+				<%= bill_f.text_field :last_name, class:'form-control', value: form_value(:last_name, :bill_address) %>
 			
 				<%= bill_f.label :street_address_1 %>
-				<%= bill_f.text_field :street_address_1, class:'form-control' %>
+				<%= bill_f.text_field :street_address_1, class:'form-control', value: form_value(:street_address_1, :bill_address) %>
 			
 				<%= bill_f.label :street_address_2 %>
-				<%= bill_f.text_field :street_address_2, class:'form-control' %>
+				<%= bill_f.text_field :street_address_2, class:'form-control', value: form_value(:street_address_2, :bill_address) %>
 			
 				<%= bill_f.label :city %>
-				<%= bill_f.text_field :city, class:'form-control' %>
+				<%= bill_f.text_field :city, class:'form-control', value: form_value(:city, :bill_address) %>
 			
 				<%= bill_f.label :country %>
-				<%= bill_f.text_field :country, class:'form-control' %>
+				<%= bill_f.text_field :country, class:'form-control', value: form_value(:country, :bill_address) %>
 			
 				<%= bill_f.label :postcode %>
-				<%= bill_f.text_field :postcode, class:'form-control' %>
+				<%= bill_f.text_field :postcode, class:'form-control', value: form_value(:postcode, :bill_address) %>
 			
 				<%= bill_f.label :phone %>
-				<%= bill_f.text_field :phone, class:'form-control' %>
+				<%= bill_f.text_field :phone, class:'form-control', value: form_value(:phone, :bill_address) %>
 					</div>
 		<% end %>
 
@@ -61,28 +61,28 @@
 				<%= delivery_f.hidden_field :user_id %>
 
 					<%= delivery_f.label :first_name %>
-					<%= delivery_f.text_field :first_name, class:'form-control' %>
+					<%= delivery_f.text_field :first_name, class:'form-control', value: form_value(:first_name, :delivery_address) %>
 				
 					<%= delivery_f.label :last_name %>
-					<%= delivery_f.text_field :last_name, class:'form-control' %>
+					<%= delivery_f.text_field :last_name, class:'form-control', value: form_value(:last_name, :delivery_address) %>
 				
 					<%= delivery_f.label :street_address_1 %>
-					<%= delivery_f.text_field :street_address_1, class:'form-control' %>
+					<%= delivery_f.text_field :street_address_1, class:'form-control', value: form_value(:street_address_1, :delivery_address) %>
 				
 					<%= delivery_f.label :street_address_2 %>
-					<%= delivery_f.text_field :street_address_2, class:'form-control' %>
+					<%= delivery_f.text_field :street_address_2, class:'form-control', value: form_value(:street_address_2, :delivery_address)  %>
 				
 					<%= delivery_f.label :city %>
-					<%= delivery_f.text_field :city, class:'form-control' %>
+					<%= delivery_f.text_field :city, class:'form-control', value: form_value(:city, :delivery_address) %>
 				
 					<%= delivery_f.label :country %>
-					<%= delivery_f.text_field :country, class:'form-control' %>
+					<%= delivery_f.text_field :country, class:'form-control', value: form_value(:country, :delivery_address) %>
 				
 					<%= delivery_f.label :postcode %>
-					<%= delivery_f.text_field :postcode, class:'form-control' %>
+					<%= delivery_f.text_field :postcode, class:'form-control', value: form_value(:postcode, :delivery_address) %>
 				
 					<%= delivery_f.label :phone %>
-					<%= delivery_f.text_field :phone, class:'form-control' %>
+					<%= delivery_f.text_field :phone, class:'form-control', value: form_value(:phone, :delivery_address) %>
 
 			<% end %>
 		</div>

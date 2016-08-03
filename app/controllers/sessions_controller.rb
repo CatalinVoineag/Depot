@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
   before_filter :require_user, :except => [:create, :new, :destroy]
+
+  @step = "first"
   
   def new
   end
