@@ -6,10 +6,11 @@
 	<div role="tabpanel">
 		<div class="nav-tab-customs">
 			<ul class="nav nav-tabs">
-				<%= get_pill('Order', '#home', a_class: 'tab_toggle', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active', onclick: 'showTab(this);') %>
+				<%= get_pill('Order', '#home', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active') %>
 
-        <%= get_pill('Payment', '#payment', a_class: 'tab_toggle', li_id: 'tab2', a_id: 'tabahref2', li_class: 'tabby', onclick: 'showTab(this); ') %>
-			</ul>
+        <%= get_pill('Payment', '#payment', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby') %>
+			  <%# get_pill('Confirmation', '#confirmation', a_class: 'tab_toggle', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby', onclick: 'showTab(this);') %>
+      </ul>
 		</div>
 	</div>
 	<br>
@@ -70,23 +71,34 @@
 
       </div>
     </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="confirmation">
+      <div class="col-md-12 fields_holder">
+        
+        <h1>Confirmation</h1>
+
+      </div>
+    </div>
+
   </div>
 	
 </section>
 
 <script>
-	 $(document).ready(function () {
-        showTheTab();
-    });
-    function showTheTab() {
-        url_args = window.location.href.split('/').pop().split('#');
-        if (url_args[1] == "home") {
-            showTab($('li#tab1').children()[0]);
-        } else if (url_args[1] == "payment") {
-        //	debugger;
-        //    $('.nav-tabs a[href=#' + url_args[1] + ']').tab('show');
-        	 showTab($('li#tab2').children()[0]);
-        }
-        $('div.tab-pane.active').find('input:not([type=hidden]):first').delay(500).focus(0);
-    };
+function showTheTab() {
+ url_args = window.location.href.split('/').pop().split('#');
+   if (url_args[1] == "home") {
+     showTab($('li#tab1').children()[0]);
+   } else if (url_args[1] == "payment") {
+     showTab($('li#tab3').children()[0]);
+   }; //$('.nav-tabs a[href=#home]').tab('show'); //:NT: used to avoid voiding alert messages
+//     prosku.showTab($('li#tab1').children()[0]);
+   
+ };
+ $(document).ready(function(){
+  showTheTab();
+ })
+
+ //$(document).on('page:load', showTheTab());
+
 </script>
