@@ -2,22 +2,24 @@
 
 
 
-<section class="content">
-	<div role="tabpanel">
-		<div class="nav-tab-customs">
-			<ul class="nav nav-tabs">
-				<%= get_pill('Order', '#home', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active') %>
+<section class="content ">
+  <div role="tabpanel">
 
-        <%= get_pill('Payment', '#payment', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby') %>
-			  <%# get_pill('Confirmation', '#confirmation', a_class: 'tab_toggle', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby', onclick: 'showTab(this);') %>
+    <div class="nav-tab-customs">
+      <ul class="nav nav-tabs">
+         <%= get_pill('Home', root_path, li_id:'lid', li_class:'tabby', a_class:['great' ,'cool']) %>
+        <%= get_pill('Order', '#home', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active', onclick: 'showTab(this, event);') %>
+
+        <%= get_pill('Payment', '#payment', li_id: 'tab2', a_id: 'tabahref2', li_class: 'tabby', onclick: 'showTab(this, event);') %>
+        <%# get_pill('Confirmation', '#confirmation', a_class: 'tab_toggle', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby', onclick: 'showTab(this);') %>
       </ul>
-		</div>
-	</div>
-	<br>
+    </div>
+  </div>
+  <br>
 
-	 <div class="tab-content row">
+   <div class="tab-content row">
     <div role="tabpanel" class="tab-pane fade active in" id="home">
-      <div class="col-md-12 fields_holder">
+      
        <!-- <%# flash.each do |name, msg| %>
             <%# next if excluded_flash_keys.include? name
                if name == 'notice'
@@ -40,11 +42,10 @@
         
         <%= render 'form' %>
 
-      </div>
     </div>
 
     <div role="tabpanel" class="tab-pane fade" id="payment">
-      <div class="col-md-12 fields_holder">
+   
       <!--  <%# flash.each do |name, msg| %>
             <%# next if excluded_flash_keys.include? name
                if name == 'notice'
@@ -69,36 +70,15 @@
 
         <%= render '/payments/form' %>
 
-      </div>
+      
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="confirmation">
-      <div class="col-md-12 fields_holder">
-        
-        <h1>Confirmation</h1>
-
-      </div>
-    </div>
 
   </div>
-	
+    
+  
 </section>
 
 <script>
-function showTheTab() {
- url_args = window.location.href.split('/').pop().split('#');
-   if (url_args[1] == "home") {
-     showTab($('li#tab1').children()[0]);
-   } else if (url_args[1] == "payment") {
-     showTab($('li#tab3').children()[0]);
-   }; //$('.nav-tabs a[href=#home]').tab('show'); //:NT: used to avoid voiding alert messages
-//     prosku.showTab($('li#tab1').children()[0]);
-   
- };
- $(document).ready(function(){
-  showTheTab();
- })
-
- //$(document).on('page:load', showTheTab());
 
 </script>
