@@ -1,0 +1,19 @@
+	<div role="tabpanel">
+		<div class="nav-tab-customs">
+			<ul class="nav nav-tabs">
+				<%# get_pill('Order', '#home', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active') %>
+
+        <%# get_pill('Payment', '#payment', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby') %>
+			  <%# get_pill('Confirmation', '#confirmation', a_class: 'tab_toggle', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby', onclick: 'showTab(this);') %>
+
+        <%# link_to 'Address', order_delivery_address %>
+        <li><%= link_to 'Address', address_path(@order) %></li>
+        <li><%= link_to "Payment", "#" %></li>
+        <li><%# link_to "hahah",  %></li>
+      </ul>
+		</div>
+	</div>
+
+<%# byebug %>
+
+<%= render 'form' %>

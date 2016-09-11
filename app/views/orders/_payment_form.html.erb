@@ -1,0 +1,33 @@
+<div class="container">
+	
+	<%= simple_form_for(:payment, url: order_create_payment_path(@order), action: 'create_payment' ) do |f| %>
+		<div class="col-md-4">
+			<form class="form-signin">
+				
+				<div class="form-group">
+					<%= f.label :card_name %>
+					<%= f.input :card_name, label: false, class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :card_no %>
+					<%= f.input :card_no, as: :numeric, label: false, class: 'form-control' %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :expiration_date %>
+					<%= f.input :expiration_date, label: false, class: 'form-control', as: :date %>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :card_code %>
+					<%= f.input_field :card_code, as: :numeric, label: false, class: 'form-control' %>
+				</div>
+
+				<%= f.submit 'Submit', class:'btn btn-success' %>
+
+			</form>
+		</div>
+	<% end %>
+
+</div>

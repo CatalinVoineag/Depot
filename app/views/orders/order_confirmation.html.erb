@@ -1,0 +1,42 @@
+
+
+<h2>Order</h2>
+
+<ul>
+	<li><%= @order.email %></li>
+	<li><%= @order.user.name %></li>
+</ul>
+
+<h2>Bill Address</h2>
+<ul>
+	<li><%= @order.bill_address.first_name %></li>
+	<li><%= @order.bill_address.last_name %></li>
+	<li><%= @order.bill_address.street_address_1 %></li>
+	<li><%= @order.bill_address.street_address_2 %></li>
+	<li><%= @order.bill_address.city %></li>
+	<li><%= @order.bill_address.country %></li>
+	<li><%= @order.bill_address.postcode %></li>
+	<li><%= @order.bill_address.phone %></li>
+</ul>
+
+<h2>Delivery Address</h2>
+<ul>
+	<li><%= @order.delivery_address.first_name %></li>
+	<li><%= @order.delivery_address.last_name %></li>
+	<li><%= @order.delivery_address.street_address_1 %></li>
+	<li><%= @order.delivery_address.street_address_2 %></li>
+	<li><%= @order.delivery_address.city %></li>
+	<li><%= @order.delivery_address.country %></li>
+	<li><%= @order.delivery_address.postcode %></li>
+	<li><%= @order.delivery_address.phone %></li>
+</ul>
+
+<h2>Payment</h2>
+<ul>
+	<li>@order.payment.card_name</li>
+	<li>@order.payment.card_no</li>
+	<li>@order.payment.expiration_date</li>
+	<li>@order.payment.card_code</li>
+</ul>
+<br>
+<%= button_to "Place Order", confirm_order_path(@order), class:'btn btn-xs btn-primary' %>
