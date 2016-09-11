@@ -9,6 +9,10 @@ class Order < ActiveRecord::Base
 
 	belongs_to :user
 
+	validates :user_id, presence: :true
+
+	cattr_accessor :error_in
+
 	# attrs for creating order lines by copying cart lines
 	ATTRS_TO_REJECT = %w(id created_at updated_at order_id user_id cart_id)
 
@@ -75,6 +79,39 @@ class Order < ActiveRecord::Base
 				return false
 			end
 		end		 
+	end
+
+	def create_payment(params)
+		params[:order_id] = self.id
+		params.permit!
+		payment = Payment.new(params)
+		if payment.valid?
+			payment.save!
+			return true
+		else
+			self.errors.add('', payment.errors.full_messages.join(''))
+			return false
+		end
+	end
+
+	def confirmation_check(models)
+		if self.valid?
+			models.each do |model|
+			
+				byebug if model == 'payment'
+				if self.send(model).valid?
+					return true
+				else
+					self.errors.add('', self.send(model).errors.full_messages.join(' '))
+					self.errors_in = model
+					return false
+				end
+			end
+		else
+			self.errors.add('', self.errors.join(' '))
+			self.error_in = "Order"
+		end
+
 	end
 
 

@@ -5,73 +5,13 @@
 <section class="content ">
   <div role="tabpanel">
 
-    <div class="nav-tab-customs">
-      <ul class="nav nav-tabs">
-         <%= get_pill('Home', root_path, li_id:'lid', li_class:'tabby', a_class:['great' ,'cool']) %>
-        <%= get_pill('Order', '#home', li_id: 'tab1', a_id: 'tabahref1', li_class: 'tabby active', onclick: 'showTab(this, event);') %>
 
-        <%= get_pill('Payment', '#payment', li_id: 'tab2', a_id: 'tabahref2', li_class: 'tabby', onclick: 'showTab(this, event);') %>
-        <%# get_pill('Confirmation', '#confirmation', a_class: 'tab_toggle', li_id: 'tab3', a_id: 'tabahref3', li_class: 'tabby', onclick: 'showTab(this);') %>
-      </ul>
-    </div>
-  </div>
-  <br>
 
    <div class="tab-content row">
-    <div role="tabpanel" class="tab-pane fade active in" id="home">
+    
       
-       <!-- <%# flash.each do |name, msg| %>
-            <%# next if excluded_flash_keys.include? name
-               if name == 'notice'
-                 alert_class = 'alert-success'
-               elsif name == 'error'
-                 alert_class = 'alert-login'
-               else
-                 alert_class = 'alert-warning'
-               end %>
-            <%# unless name == 'error' && msg == "You must be logged in to access this page" %>
-                <div id="flashContainer" class="alert <%# alert_class %> alert-dismissable" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                  <div id="flashMessage">
-                    <%# msg %>
-                  </div>
-                </div>
-            <%# end %>
-        <%# end %> -->
-        
+
         <%= render 'form' %>
-
-    </div>
-
-    <div role="tabpanel" class="tab-pane fade" id="payment">
-   
-      <!--  <%# flash.each do |name, msg| %>
-            <%# next if excluded_flash_keys.include? name
-               if name == 'notice'
-                 alert_class = 'alert-success'
-               elsif name == 'error'
-                 alert_class = 'alert-login'
-               else
-                 alert_class = 'alert-warning'
-               end %>
-            <%# unless name == 'error' && msg == "You must be logged in to access this page" %>
-                <div id="flashContainer" class="alert <%# alert_class %> alert-dismissable" role="alert">
-                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                  <div id="flashMessage">
-                    <%# msg %>
-                  </div>
-                </div>
-            <%# end %>
-        <%# end %> -->
-        
-        <h2>Payment Information</h2>
-
-        <%= render '/payments/form' %>
-
-      
-    </div>
 
 
   </div>
@@ -79,6 +19,3 @@
   
 </section>
 
-<script>
-
-</script>
