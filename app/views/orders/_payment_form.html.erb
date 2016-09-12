@@ -1,33 +1,18 @@
+<%  # If the order is in the confirmation stage this variable will be true
+		confirmation = @order.status == 'confirmation' ? true : false 
+%>
+
+
 <div class="container">
-	
-	<%= simple_form_for(:payment, url: order_create_payment_path(@order), action: 'create_payment' ) do |f| %>
-		<div class="col-md-4">
-			<form class="form-signin">
-				
-				<div class="form-group">
-					<%= f.label :card_name %>
-					<%= f.input :card_name, label: false, class: 'form-control' %>
-				</div>
 
-				<div class="form-group">
-					<%= f.label :card_no %>
-					<%= f.input :card_no, as: :numeric, label: false, class: 'form-control' %>
-				</div>
-
-				<div class="form-group">
-					<%= f.label :expiration_date %>
-					<%= f.input :expiration_date, label: false, class: 'form-control', as: :date %>
-				</div>
-
-				<div class="form-group">
-					<%= f.label :card_code %>
-					<%= f.input_field :card_code, as: :numeric, label: false, class: 'form-control' %>
-				</div>
-
-				<%= f.submit 'Submit', class:'btn btn-success' %>
-
-			</form>
-		</div>
+	<% if !confirmation %>
+			<%= simple_form_for(:payment, url: order_create_payment_path(@order)) do |f| %>
+				<%= render partial: 'payment_form_content', locals: {f: f} %>
+			<% end %>
+	<% else %>
+			<%= simple_form_for(@payment) do |f| %>
+				<%= render partial: 'payment_form_content', locals: {f: f} %>
+			<% end %>
 	<% end %>
 
 </div>

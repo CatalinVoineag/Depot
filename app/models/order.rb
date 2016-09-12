@@ -11,7 +11,9 @@ class Order < ActiveRecord::Base
 
 	validates :user_id, presence: :true
 
-	cattr_accessor :error_in
+	validates :email, presence: true
+
+	cattr_accessor :errors_in
 
 	# attrs for creating order lines by copying cart lines
 	ATTRS_TO_REJECT = %w(id created_at updated_at order_id user_id cart_id)
@@ -95,23 +97,23 @@ class Order < ActiveRecord::Base
 	end
 
 	def confirmation_check(models)
+		flag = []
 		if self.valid?
 			models.each do |model|
-			
-				byebug if model == 'payment'
 				if self.send(model).valid?
-					return true
+					flag << true
 				else
+
 					self.errors.add('', self.send(model).errors.full_messages.join(' '))
 					self.errors_in = model
-					return false
+					flag << false
 				end
 			end
 		else
-			self.errors.add('', self.errors.join(' '))
-			self.error_in = "Order"
+			self.errors_in = "Order"
+			flag << false
 		end
-
+		return flag.include?(false) ? false : true  
 	end
 
 

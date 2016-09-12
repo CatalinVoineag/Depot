@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803210940) do
+ActiveRecord::Schema.define(version: 20160912203755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,14 +47,6 @@ ActiveRecord::Schema.define(version: 20160803210940) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.text     "text"
-    t.integer  "user_id"
-    t.integer  "link_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "delivery_addresses", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -71,13 +63,6 @@ ActiveRecord::Schema.define(version: 20160803210940) do
     t.integer  "order_id"
   end
 
-  create_table "links", force: :cascade do |t|
-    t.string   "title"
-    t.string   "link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_lines", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "product_id"
@@ -91,32 +76,23 @@ ActiveRecord::Schema.define(version: 20160803210940) do
     t.decimal  "total_price"
     t.string   "status"
     t.string   "email"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.integer  "delivery_address_id"
     t.integer  "bill_address_id"
     t.integer  "order_number"
-    t.string   "step",                default: "address"
   end
 
   create_table "payments", force: :cascade do |t|
     t.integer  "amount"
     t.integer  "card_no"
     t.integer  "card_code"
-    t.string   "expiration_date"
     t.string   "card_name"
     t.integer  "user_id"
     t.integer  "order_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "posts", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "user_id"
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "expiration_date"
   end
 
   create_table "products", force: :cascade do |t|
@@ -137,14 +113,6 @@ ActiveRecord::Schema.define(version: 20160803210940) do
     t.datetime "updated_at",      null: false
     t.string   "remember_digest"
     t.boolean  "admin"
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.integer  "link_id"
-    t.integer  "user_id"
-    t.boolean  "up_vote"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,3 +1,7 @@
+<%  # If the order is in the confirmation stage this variable will be true
+		confirmation = @order.status == 'confirmation' ? true : false 
+%>
+
 <div class="container">
 	
 	<h2>User</h2>
@@ -16,35 +20,14 @@
 	<br>
 
 		<h2>Billing Address</h2>
-		
-		<%= fields_for :bill_address, @order.bill_address do |bill_f| %>
-			<div id="bill_div">
-			<%= bill_f.hidden_field :user_id, value: current_user.id %>
-
-				<%= bill_f.label :first_name %>
-				<%= bill_f.text_field :first_name, class:'form-control', value: form_value(:first_name, :bill_address) %>
-
-				<%= bill_f.label :last_name %>
-				<%= bill_f.text_field :last_name, class:'form-control', value: form_value(:last_name, :bill_address) %>
-			
-				<%= bill_f.label :street_address_1 %>
-				<%= bill_f.text_field :street_address_1, class:'form-control', value: form_value(:street_address_1, :bill_address) %>
-			
-				<%= bill_f.label :street_address_2 %>
-				<%= bill_f.text_field :street_address_2, class:'form-control', value: form_value(:street_address_2, :bill_address) %>
-			
-				<%= bill_f.label :city %>
-				<%= bill_f.text_field :city, class:'form-control', value: form_value(:city, :bill_address) %>
-			
-				<%= bill_f.label :country %>
-				<%= bill_f.text_field :country, class:'form-control', value: form_value(:country, :bill_address) %>
-			
-				<%= bill_f.label :postcode %>
-				<%= bill_f.text_field :postcode, class:'form-control', value: form_value(:postcode, :bill_address) %>
-			
-				<%= bill_f.label :phone %>
-				<%= bill_f.text_field :phone, class:'form-control', value: form_value(:phone, :bill_address) %>
-					</div>
+		<% if !confirmation %>
+			<%= fields_for :bill_address, @order.bill_address do |bill_f| %>
+				<%= render partial: 'bill_address_form_content', locals: {bill_f: bill_f} %>
+			<% end %>
+		<% else %>
+			<%= fields_for @bill_address, @order.bill_address do |bill_f| %>
+				<%= render partial: 'bill_address_form_content', locals: {bill_f: bill_f} %>
+			<% end %>
 		<% end %>
 
 			</div>

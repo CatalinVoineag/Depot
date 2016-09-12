@@ -24,9 +24,18 @@ class PaymentsController < ApplicationController
 	end
 
 	def edit
+		@payment = Payment.new
 	end
 
 	def update
+		#byebug
+		if @payment.update_attributes(payment_params)
+			flash[:notice] = "Payment Updated"
+			redirect_to @payment.order.nil? ? @payment : order_confirmation_path(@payment.order)
+		else
+			flash[:error] = AlertsHelper.getErrorAlertMessages(@payment)
+			redirect_to @payment.order.nil? ? edit_payment_path(@payment) : order_new_patment_path(@payment.order)
+		end
 	end
 
 	def destroy
