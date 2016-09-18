@@ -9,7 +9,7 @@ module AlertsHelper
             msg << '<li>'
             msg << corrected_first(model, message)
             msg << ' '
-            msg << m 
+            msg << m
             msg << '</li>'
         end
       end

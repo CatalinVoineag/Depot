@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
 
 	validates :email, presence: true
 
-	cattr_accessor :errors_in
+	cattr_accessor :errors_in, :bulk_erorrs
 
 	# attrs for creating order lines by copying cart lines
 	ATTRS_TO_REJECT = %w(id created_at updated_at order_id user_id cart_id)
@@ -45,15 +45,20 @@ class Order < ActiveRecord::Base
 		result
 	end
 
-	def create_bill_in_order(params)
+	def create_bill_in_order(params, action)
 		params[:order_id] = id.to_s
 		params.permit!
-		bill = BillAddress.new(params)
+		if action.downcase == "create" 
+			bill = BillAddress.new(params)
+		else
+			bill = self.bill_address
+			bill.assign_attributes(params)
+		end
 		if bill.valid?
 			bill.save!
 			return true
 		else
-			self.errors.add('', bill.errors.full_messages.join(''))
+			bill.errors.full_messages.map { |e| self.errors.add('', e) }
 			return false
 		end
 	end
@@ -61,26 +66,32 @@ class Order < ActiveRecord::Base
 	def create_delivery_in_order(params)
 		params[:order_id] = id.to_s
 		params.permit!
-		delivery = DeliveryAddress.new(params)
+		if action.downcase == "create"
+			delivery = DeliveryAddress.new(params)
+		else
+			delivery = self.delivery_address
+			delivery.assign_attributes(params)
+		end
 		if delivery.valid?
 			delivery.save!
 			return true
 		else
-			self.errors.add('', delivery.errors.full_messages.join(''))
+			delivery.errors.full_messages.map { |e| self.errors.add('', e) }
 			return false
 		end
 	end
 
 	def create_order_lines(cart)
+		status = false
 		cart.cart_lines.each do |line|
 			oi = self.order_lines.new(line.attributes.delete_if { |k, _| ATTRS_TO_REJECT.include?(k) })
 			if oi.save
-				return true
+				status = true
 			else
 				self.errors.add("", AlertsHelper.getErrorAlertMessages(oi))
-				return false
 			end
-		end		 
+		end
+		status		 
 	end
 
 	def create_payment(params)
